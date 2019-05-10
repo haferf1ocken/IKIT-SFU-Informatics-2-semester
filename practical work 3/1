@@ -1,0 +1,27 @@
+%%���������������� ��������� ��������������� ����� ������� ������ �������� : 111
+rand('state', 111);
+%%������������� ��������� ������ ������������ ��� �������� ralph
+ralph = rand(1,10);
+ralph = ralph/sum(ralph)
+save ralph.txt -ascii ralph;
+alph_redundancy(ralph)
+
+  
+load coin.txt -ascii coin
+load crime.txt -ascii crime
+load unfair.txt -ascii unfair
+load ventsel.txt -ascii ventsel
+
+vars = {coin, crime, unfair, ventsel, ralph}
+result = zeros(5,2)
+
+for i = 1:5
+  redundancy = alph_redundancy(vars{i})
+  entropy = alph_entropy(vars{i})
+  result(i, 2) = redundancy
+  result(i, 1) = entropy
+end
+
+save results.txt -ascii result
+%%���� + ������ �������� ������. ������ � ����� ������� ��������
+%%� ������������ � ����� � ���������
